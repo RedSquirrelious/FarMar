@@ -20,4 +20,5 @@
 # self.between(beginning_time, end_time): returns a collection of FarMar::Sale objects where the purchase time is between the two times given as arguments
 
 class FarMar::Sale
+	
 end

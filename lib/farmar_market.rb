@@ -20,4 +20,9 @@
 # vendors: returns a collection of FarMar::Vendor instances that are associated with the market by the market_id field.
 
 class FarMar::Market
+	attr_reader :name
+	def initialize(name)
+		@name = name
+		# return name
+	end
 end

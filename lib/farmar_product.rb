@@ -20,4 +20,5 @@
 
 
 class FarMar::Products
+	
 end
