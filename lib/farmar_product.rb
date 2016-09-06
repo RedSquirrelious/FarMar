@@ -8,8 +8,8 @@
 
 # For each of the data classes build the following methods:
 
-# self.all: returns a collection of instances, representing all of the objects described in the CSV
-# self.find(id): returns an instance of the object where the value of the id field in the CSV matches the passed parameter.
+## self.all: returns a collection of instances, representing all of the objects described in the CSV
+## self.find(id): returns an instance of the object where the value of the id field in the CSV matches the passed parameter.
 
 # Additional FarMar::Product Methods
 
@@ -19,6 +19,29 @@
 # self.by_vendor(vendor_id): returns all of the products with the given vendor_id
 
 
-class FarMar::Products
+class FarMar::Product
+	attr_reader :product_id, :name, :vendor_id, :instance_collector
+
+	@@instance_collector = []
 	
+	def initialize(details_hash)
+		@product_id = details_hash[:product_id]
+		@name = details_hash[:name]
+		@vendor_id = details_hash[:vendor_id]
+
+		@@instance_collector << self
+	end
+
+	def self.all?  #returns a collection of instances, representing all of the objects described in the CSV
+		return @@instance_collector
+	end
+
+	def self.find(id) #returns an instance of the object where the value of the id field in the CSV matches the passed parameter.
+	 	@@instance_collector.each do |x| 
+			if x.product_id  == id
+				return x
+			end
+		end
+		return nil
+	end
 end
