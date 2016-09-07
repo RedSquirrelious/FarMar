@@ -20,14 +20,14 @@
 
 
 class FarMar::Product
-	# include SharedMethods
+	extend SharedMethods
 
-	attr_reader :product_id, :name, :vendor_id, :instance_collector
+	attr_reader :id, :name, :vendor_id
 
 
 	
 	def initialize(details_hash)
-		@product_id = details_hash[:product_id]
+		@id = details_hash[:id]
 		@name = details_hash[:name]
 		@vendor_id = details_hash[:vendor_id]
 
@@ -38,7 +38,7 @@ class FarMar::Product
 		multiple_instances = []
 
   		CSV.foreach('support/products.csv', 'r').each do |line|
-  			multiple_instances << self.new(product_id: line[0], name: line[1], vendor_id: line[2])
+  			multiple_instances << self.new(id: line[0], name: line[1], vendor_id: line[2])
   	
 		end
 		return multiple_instances
@@ -46,14 +46,14 @@ class FarMar::Product
 
 	
 
-	def self.find(id) #returns an instance of the object where the value of the id field in the CSV matches the passed parameter.
-	 	@@instance_collector.each do |x| 
-			if x.product_id  == id
-				return x
-			end
-		end
-		return nil
-	end
+	# def self.find(id) #returns an instance of the object where the value of the id field in the CSV matches the passed parameter.
+	#  	@@instance_collector.each do |x| 
+	# 		if x.product_id  == id
+	# 			return x
+	# 		end
+	# 	end
+	# 	return nil
+	# end
 
 #TAKES CSV DATA TO ADD NEW PRODUCTS
 	# def self.add_products
