@@ -24,37 +24,36 @@
 # self.by_market(market_id): returns all of the vendors with the given market_id
 
 class FarMar::Vendor
-	attr_reader :vendor_id, :name, :num_of_employees, :market_id, :instance_collector
+	attr_reader :id, :name, :num_of_employees, :market_id
+	extend SharedMethods
 
-	@@instance_collector = []
 	
 	def initialize(details_hash)
-		@vendor_id = details_hash[:vendor_id]
+		@id = details_hash[:id]
 		@name = details_hash[:name]
 		@num_of_employees = details_hash[:num_of_employees]
 		@market_id = details_hash[:market_id]
 
-		@@instance_collector << self
 	end
 
 	def self.all?  #returns a collection of instances, representing all of the objects described in the CSV
 		multiple_instances = []
 
   		CSV.foreach('support/vendors.csv', 'r').each do |line|
-  			multiple_instances << self.new(vendor_id: line[0], name: line[1], num_of_employees: line[2], market_id: line[3])
+  			multiple_instances << self.new(id: line[0], name: line[1], num_of_employees: line[2], market_id: line[3])
 		end
 		return multiple_instances
 	end
-	end
+	
 
-	def self.find(id) #returns an instance of the object where the value of the id field in the CSV matches the passed parameter.
-	 	@@instance_collector.each do |x| 
-			if x.vendor_id  == id
-				return x
-			end
-		end
-		return nil
-	end
+	# def self.find(id) #returns an instance of the object where the value of the id field in the CSV matches the passed parameter.
+	#  	@@instance_collector.each do |x| 
+	# 		if x.vendor_id  == id
+	# 			return x
+	# 		end
+	# 	end
+	# 	return nil
+	# end
 #TAKES CSV DATA TO ADD NEW VENDORS
 	# def self.add_vendors
 	# 	multiple_instances = []
