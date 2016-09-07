@@ -35,7 +35,13 @@ class FarMar::Sale
 	end
 
 	def self.all?  #returns a collection of instances, representing all of the objects described in the CSV
-		return @@instance_collector
+		multiple_instances = []
+
+  		CSV.foreach('support/sales.csv', 'r').each do |line|
+  			multiple_instances << self.new(sale_id: line[0], amount: line[1].to_i, purchase_time: line[2], vendor_id: line[3], product_id: line[4])
+  	
+		end
+		return multiple_instances
 	end
 
 	def self.find(id) #returns an instance of the object where the value of the id field in the CSV matches the passed parameter.
@@ -45,5 +51,17 @@ class FarMar::Sale
 			end
 		end
 		return nil
-	end			
+	end		
+#TAKES CSV DATA TO ADD NEW SALES
+	# def self.add_sales
+	# 	multiple_sales = []
+
+ #  		CSV.foreach('support/sales.csv', 'r').each do |line|
+ #  			multiple_sales << self.new(sale_id: line[0], amount: line[1].to_i, purchase_time: line[2], vendor_id: line[3], product_id: line[4])
+  	
+	# 	end
+	# 	return multiple_sales
+	# end
+
+
 end
