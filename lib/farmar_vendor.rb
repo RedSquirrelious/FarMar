@@ -46,23 +46,5 @@ class FarMar::Vendor
 	end
 	
 
-	# def self.find(id) #returns an instance of the object where the value of the id field in the CSV matches the passed parameter.
-	#  	@@instance_collector.each do |x| 
-	# 		if x.vendor_id  == id
-	# 			return x
-	# 		end
-	# 	end
-	# 	return nil
-	# end
-#TAKES CSV DATA TO ADD NEW VENDORS
-	# def self.add_vendors
-	# 	multiple_instances = []
-
- #  		CSV.foreach('support/vendors.csv', 'r').each do |line|
- #  			multiple_instances << self.new(vendor_id: line[0], name: line[1], num_of_employees: line[2], market_id: line[3])
-	# 	end
-	# 	return multiple_instances
-	# end
-
 end
 
