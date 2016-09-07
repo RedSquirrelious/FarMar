@@ -38,7 +38,7 @@ module FarMar
 			@county = details_hash[:county]
 			@state = details_hash[:state]
 			@zip = details_hash[:zip]
-			@@instance_collector << self
+			# @@instance_collector << self
 			# self.class.send(:extend, SharedMethods)
 		end
 
