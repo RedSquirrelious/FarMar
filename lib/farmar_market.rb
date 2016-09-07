@@ -65,15 +65,15 @@ module FarMar
 		# 	return multiple_markets
 		# end
 
-		def self.all?  #returns a collection of instances, representing all of the objects described in the CSV
-			multiple_instances = []
+		# def self.all?  #returns a collection of instances, representing all of the objects described in the CSV
+		# 	multiple_instances = []
 
-				CSV.foreach('support/markets.csv', 'r') do |line|
-				multiple_instances << self.new(id: line[0], name: line[1], address: line[2], city: line[3], county: line[4], state: line[5], zip: line[6])
+		# 		CSV.foreach('support/markets.csv', 'r') do |line|
+		# 		multiple_instances << self.new(id: line[0], name: line[1], address: line[2], city: line[3], county: line[4], state: line[5], zip: line[6])
 
-				end
-			return multiple_instances
-		end
+		# 		end
+		# 	return multiple_instances
+		# end
 
 		def self.vendors(id) #returns a collection of FarMar::Vendor instances that are associated with the market by the market_id field.
 
