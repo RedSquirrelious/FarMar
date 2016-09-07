@@ -26,7 +26,7 @@ module FarMar
 
 	class Market
 	extend SharedMethods
-		attr_reader :name, :id, :instance_collector, :vendor_id
+		attr_reader :name, :id, :vendor_id
 
 
 		
@@ -38,8 +38,7 @@ module FarMar
 			@county = details_hash[:county]
 			@state = details_hash[:state]
 			@zip = details_hash[:zip]
-			# @@instance_collector << self
-			# self.class.send(:extend, SharedMethods)
+
 		end
 
 		# def self.all?  #returns a collection of instances, representing all of the objects described in the CSV
