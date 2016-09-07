@@ -20,38 +20,39 @@
 # self.between(beginning_time, end_time): returns a collection of FarMar::Sale objects where the purchase time is between the two times given as arguments
 
 class FarMar::Sale
-	attr_reader :sale_id, :amount, :purchase_time, :vendor_id, :product_id, :instance_collector
+	attr_reader :id, :amount, :purchase_time, :vendor_id, :product_id
+	
 
-	@@instance_collector = []
+	extend SharedMethods
 	
 	def initialize(details_hash)
-		@sale_id = details_hash[:sale_id]
+		@id = details_hash[:id]
 		@amount = details_hash[:amount]
 		@purchase_time = details_hash[:purchase_time]
 		@vendor_id = details_hash[:vendor_id]
 		@product_id = details_hash[:product_id]
 
-		@@instance_collector << self
+
 	end
 
 	def self.all?  #returns a collection of instances, representing all of the objects described in the CSV
 		multiple_instances = []
 
   		CSV.foreach('support/sales.csv', 'r').each do |line|
-  			multiple_instances << self.new(sale_id: line[0], amount: line[1].to_i, purchase_time: line[2], vendor_id: line[3], product_id: line[4])
+  			multiple_instances << self.new(id: line[0], amount: line[1].to_i, purchase_time: line[2], vendor_id: line[3], product_id: line[4])
   	
 		end
 		return multiple_instances
 	end
 
-	def self.find(id) #returns an instance of the object where the value of the id field in the CSV matches the passed parameter.
-	 	@@instance_collector.each do |x| 
-			if x.sale_id  == id
-				return x
-			end
-		end
-		return nil
-	end		
+	# def self.find(id) #returns an instance of the object where the value of the id field in the CSV matches the passed parameter.
+	#  	@@instance_collector.each do |x| 
+	# 		if x.sale_id  == id
+	# 			return x
+	# 		end
+	# 	end
+	# 	return nil
+	# end		
 #TAKES CSV DATA TO ADD NEW SALES
 	# def self.add_sales
 	# 	multiple_sales = []
