@@ -41,39 +41,6 @@ module FarMar
 
 		end
 
-		# def self.all?  #returns a collection of instances, representing all of the objects described in the CSV
-		# 	return @@instance_collector
-		# end
-
-		# def self.find(id) #returns an instance of the object where the value of the id field in the CSV matches the passed parameter.
-		#  	@@instance_collector.each do |x| 
-		# 		if x.market_id  == id
-		# 			return x
-		# 		end
-		# 	end
-		# 	return nil
-		# end
-
-	#TAKES CSV DATA TO ADD NEW MARKETS
-		# def self.add_markets
-		# 	multiple_markets = []
-
-	 #  		CSV.foreach('support/markets.csv', 'r') do |line|
-	 #  			multiple_markets << self.new(id: line[0], name: line[1], address: line[2], city: line[3], county: line[4], state: line[5], zip: line[6])
-	  	
-		# 	end
-		# 	return multiple_markets
-		# end
-
-		# def self.all?  #returns a collection of instances, representing all of the objects described in the CSV
-		# 	multiple_instances = []
-
-		# 		CSV.foreach('support/markets.csv', 'r') do |line|
-		# 		multiple_instances << self.new(id: line[0], name: line[1], address: line[2], city: line[3], county: line[4], state: line[5], zip: line[6])
-
-		# 		end
-		# 	return multiple_instances
-		# end
 
 		def self.vendors(id) #returns a collection of FarMar::Vendor instances that are associated with the market by the market_id field.
 
