@@ -1,3 +1,6 @@
+require 'csv'
+require_relative 'farmar_shared_methods'
+require_relative 'farmar_shared_instance_methods'
 # FarMar::Product
 
 # Each product belongs to a vendor. The vendor_id field refers to the FarMar::Vendor ID field. The FarMar::Product data, in order in the CSV, consists of:
@@ -23,6 +26,7 @@
 
 class FarMar::Product
 	extend SharedMethods
+	include SharedInstanceMethods
 
 	attr_reader :id, :name, :vendor_id
 
@@ -52,19 +56,7 @@ class FarMar::Product
 
 
 
-#DONE
-	def sales #returns a collection of FarMar::Sale instances that are associated using the FarMar::Sale product_id field.
-		sale_instances = []
-		list = FarMar::Sale.all?
-		list.each do |sale_instance|
-			if sale_instance.product_id == @id
-				# puts sale_instance.amount
-				sale_instances << sale_instance
-			end
-		end
-		# puts sale_instances.length.to_s + " sale(s)."
-		return sale_instances
-	end
+#the sales method is shared across a few classes - can be found in the SharedInstanceMethods module
 
 #DONE
 	def number_of_sales #returns the number of times this product has been sold.
