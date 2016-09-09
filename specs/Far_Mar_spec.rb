@@ -33,6 +33,8 @@ describe 'Testing FarMar' do
 		expect( wabbit.vendors ).wont_equal(1)
 	end
 
+
+
 # #PRODUCT SPECS
 
 	it 'Must Assign the Right Information to a New Product' do
