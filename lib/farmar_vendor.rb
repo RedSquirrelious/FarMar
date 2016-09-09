@@ -120,7 +120,7 @@ class FarMar::Vendor
 		list = FarMar::Vendor.all?
 		# puts list.length
 		list.each do |vendor|
-			if vendor.market_id.to_i == given_market_id
+			if vendor.market_id == given_market_id
 				puts vendor.name
 				vendor_list << vendor
 			end
