@@ -41,7 +41,7 @@ class FarMar::Vendor
 
 	end
 
-
+#DONE
 	def self.all?  #returns a collection of instances, representing all of the objects described in the CSV  ##WORKS
 		multiple_instances = []
 
