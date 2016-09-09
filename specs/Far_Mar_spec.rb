@@ -7,23 +7,24 @@ describe 'Testing FarMar' do
 
 
 #MARKET SPECS
-	it 'Must Tell Me if a Market Instance Was Made' do
-		bugs_bunny = FarMar::Market.all?
-		wabbit = bugs_bunny[50]
-		expect( wabbit.class ).must_equal(FarMar::Market)
-	end
+	# it 'Must Tell Me if a Market Instance Was Made' do
+	# 	bugs_bunny = FarMar::Market.all?
+	# 	wabbit = bugs_bunny[50]
+	# 	expect( wabbit.class ).must_equal(FarMar::Market)
+	# end
 
-	it 'Must Return All Market Instances' do
-		FarMar::Market.new({id: 789, name: "West Seattle", address: "Somewhere", city: "Seattle", county: "King",state: "WA", zip: 00000})
-		expect( FarMar::Market.all?.length ).wont_equal(0)
-	end
+	# it 'Must Return All Market Instances' do
+	# 	FarMar::Market.new({id: 789, name: "West Seattle", address: "Somewhere", city: "Seattle", county: "King",state: "WA", zip: 00000})
+	# 	expect( FarMar::Market.all?.length ).wont_equal(0)
+	# end
 
 
 	it 'Must Return a Market if Given an ID' do
 		totoro = FarMar::Market.all?
 		cat_bus = totoro[50].id
 		neko_basu = totoro[50].name
-		expect( FarMar::Market.find(cat_bus).name ).must_equal(neko_basu)
+		expect( FarMar::Market.find(cat_bus).class ).must_equal( FarMar::Market )
+		expect( FarMar::Market.find(cat_bus).name ).must_equal( neko_basu )
 	end
 
 	it 'Must Return the List of Vendors at a Given Market' do
@@ -85,16 +86,16 @@ describe 'Testing FarMar' do
 
 	it 'Must Return the Vendor for a Given Sale' do
 		melon = FarMar::Sale.all?
-		cantaloupe = melon[1000]
-		expect( cantaloupe.vendor ).wont_equal(0)
-		expect( cantaloupe.vendor[0].class ).must_equal(FarMar::Vendor)
+		cantaloupe = melon[100]
+		expect( cantaloupe.vendors ).wont_equal(0)
+		expect( cantaloupe.vendors[0].class ).must_equal(FarMar::Vendor)
 	end
 
 	it 'Must Show the Products Sold in a Given Sale' do
 		furniture = FarMar::Sale.all?
 		loveseat = furniture[42]
-		expect( loveseat.product ).wont_equal(0)
-		expect( loveseat.product[0].class ).must_equal( FarMar::Product )
+		expect( loveseat.products ).wont_equal(0)
+		expect( loveseat.products[0].class ).must_equal( FarMar::Product )
 	end
 
 
@@ -151,8 +152,8 @@ describe 'Testing FarMar' do
 		expect( FarMar::Vendor.by_market(halloween) ).wont_equal(0)
 		expect( FarMar::Vendor.by_market(halloween)[0].class ).must_equal( FarMar::Vendor )
 	end
-	# it 'Must Raise an ArgumentException if given a non-Fixnum' do
-	# 	expect( proc { FizzBuzzX::FizzBuzzX.fizzbuzzx("Something") } ).must_raise ArgumentError
+# 	# it 'Must Raise an ArgumentException if given a non-Fixnum' do
+# 	# 	expect( proc { FizzBuzzX::FizzBuzzX.fizzbuzzx("Something") } ).must_raise ArgumentError
 	# end
 end
 
