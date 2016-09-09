@@ -1,3 +1,6 @@
+require 'csv'
+require_relative 'farmar_shared_methods'
+require_relative 'farmar_shared_instance_methods'
 # FarMar::Vendor
 
 # Each vendor belongs to a market, the market_id field refers to the FarMar::Market ID field. Each vendor has many products for sell. The FarMar::Vendor data, in order in the CSV, consists of:
@@ -31,7 +34,7 @@ class FarMar::Vendor
 	attr_reader :id, :name, :num_of_employees, :market_id, :vendor_list
 	
 	extend SharedMethods
-
+	include SharedInstanceMethods
 	
 	def initialize(details_hash)
 		@id = details_hash[:id]
@@ -69,35 +72,11 @@ class FarMar::Vendor
 		return markets
 	end
 
-#DONE
-	def products #returns a collection of FarMar::Product instances that are associated by the FarMar::Product vendor_id field.  ##WORKS 
-		product_list = []
-		list = FarMar::Product.all?
-		list.each do |item|
-			if item.vendor_id == @id
-				puts item.name
-				product_list << item
-			end
-		end
-		# return nil
-		puts product_list.length.to_s + " products!"
-		return product_list
-	end
 
-#DONE
-	def sales #returns a collection of FarMar::Sale instances that are associated by the vendor_id field. ##WORKS
-		sales_list = []
-		list = FarMar::Sale.all?
-		list.each do |sale_instance|
-			if sale_instance.vendor_id == @id
-				puts sale_instance.amount.to_s + " dollars"
-				sales_list << sale_instance
-			end
-		end
-		# return nil
-		puts sales_list.length.to_s + " sales overall!"
-		return sales_list
-	end
+
+#the products method is shared across a few classes - can be found in the SharedInstanceMethods module
+
+#the sales method is shared across a few classes - can be found in the SharedInstanceMethods module
 
 #DONE
 	def revenue #returns the the sum of all of the vendor's sales (in cents) ##WORKS
