@@ -1,7 +1,7 @@
 #farmar_shared_methods.rb
 require 'csv'
 
-module SharedMethods
+module SharedClassMethods
 
 	def find(id) #returns an instance of the object where the value of the id field in the CSV matches the passed parameter.
 	 	# puts "will this work?"
