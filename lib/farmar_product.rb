@@ -8,15 +8,17 @@
 
 # For each of the data classes build the following methods:
 
-## self.all: returns a collection of instances, representing all of the objects described in the CSV
-## self.find(id): returns an instance of the object where the value of the id field in the CSV matches the passed parameter.
+#[DONE] self.all: returns a collection of instances, representing all of the objects described in the CSV
+
+#[DONE in SharedMethods module] self.find(id): returns an instance of the object where the value of the id field in the CSV matches the passed parameter.
 
 # Additional FarMar::Product Methods
 
-# #vendor: returns the FarMar::Vendor instance that is associated with this vendor using the FarMar::Product vendor_id field
-# #sales: returns a collection of FarMar::Sale instances that are associated using the FarMar::Sale product_id field.
-# #number_of_sales: returns the number of times this product has been sold.
-# self.by_vendor(vendor_id): returns all of the products with the given vendor_id
+#[DONE] sales: returns a collection of FarMar::Sale instances that are associated using the FarMar::Sale product_id field.
+
+#NOTDONENOTDONENOTDONE number_of_sales: returns the number of times this product has been sold.
+
+#[DONE] self.by_vendor(vendor_id): returns all of the products with the given vendor_id
 
 
 class FarMar::Product
@@ -34,6 +36,7 @@ class FarMar::Product
 
 	end
 
+
 	def self.all?  #returns a collection of instances, representing all of the objects described in the CSV
 		multiple_instances = []
 
@@ -44,26 +47,48 @@ class FarMar::Product
 		return multiple_instances
 	end
 
-	
 
-	# def self.find(id) #returns an instance of the object where the value of the id field in the CSV matches the passed parameter.
-	#  	@@instance_collector.each do |x| 
-	# 		if x.product_id  == id
-	# 			return x
-	# 		end
-	# 	end
-	# 	return nil
-	# end
+#the find(id) method is shared across all the classes - can be found in the SharedMethods module
 
-#TAKES CSV DATA TO ADD NEW PRODUCTS
-	# def self.add_products
-	# 	multiple_products = []
 
- #  		CSV.foreach('support/products.csv', 'r').each do |line|
- #  			multiple_products << self.new(product_id: line[0], name: line[1], vendor_id: line[2])
-  	
-	# 	end
-	# 	return multiple_products
-	# end
 
+#DONE
+	def sales #returns a collection of FarMar::Sale instances that are associated using the FarMar::Sale product_id field.
+		sale_instances = []
+		list = FarMar::Sale.all?
+		list.each do |sale_instance|
+			if sale_instance.product_id == @id
+				# puts sale_instance.amount
+				sale_instances << sale_instance
+			end
+		end
+		# puts sale_instances.length.to_s + " sale(s)."
+		return sale_instances
+	end
+
+#DONE
+	def number_of_sales #returns the number of times this product has been sold.
+		puts "woo, number of sales"
+		sales
+		return sales.length
+
+	end
+
+#DONE
+	def self.by_vendor(given_vendor_id) #returns all of the products with the given vendor_id
+		product_list = []
+
+		list = FarMar::Product.all?
+		# puts list.length
+		list.each do |item|
+			if item.vendor_id.to_i == given_vendor_id
+				puts item.name
+				product_list << item
+			end
+		end
+
+		puts product_list.length.to_s + " is in that many market(s)."
+		return product_list
+	end
 end
+
