@@ -16,27 +16,34 @@ require_relative 'lib/farmar_shared_methods'
 require_relative 'lib/farmar_shared_instance_methods'
 # # ...require all needed classes
 
-# ruby = FarMar::Market.all?
+ruby = FarMar::Market.all
 
 # puts ruby[42].id
 # puts ruby[42].name
-# puts ruby[42].vendors.to_s + "i'm a market vendor"
+# puts ruby[42].vendors.length 
+# puts ruby[42].preferred_vendor.name
+# puts ruby[42].worst_vendor.name
 
-# coriander = FarMar::Vendor.all?
+puts ruby[42].products
+
+# FarMar::Market.search('school')
+
+
+# coriander = FarMar::Vendor.all
 
 # puts coriander[4].id
 # puts coriander[4].name
 # puts coriander[4].products
 # puts coriander[4].sales
 
-# salamander = FarMar::Sale.all?
+# salamander = FarMar::Sale.all
 
 # puts salamander[0].id
 # puts salamander[0].amount
 # puts salamander[0].products
 # # puts salamander[0].sales
 
-# cylinder = FarMar::Product.all?
+# cylinder = FarMar::Product.all
 
 # puts cylinder[0].id
 # puts cylinder[0].name
@@ -45,7 +52,7 @@ require_relative 'lib/farmar_shared_instance_methods'
 
 # puts FarMar::Product.find(43).name
 
-		# totoro = FarMar::Market.all?
+		# totoro = FarMar::Market.all
 		# cat_bus = totoro[50].id
 		# puts cat_bus
 		# neko_basu = totoro[50].name
