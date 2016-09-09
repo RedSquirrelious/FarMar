@@ -50,3 +50,7 @@ build-iPhoneSimulator/
 # unless supporting rvm < 1.11.0 or doing something fancy, ignore this:
 .rvmrc
 .DS_Store
+
+#don't need to see Sublime stuff
+FarMar.sublime-project
+sublime-workspace
