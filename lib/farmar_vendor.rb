@@ -30,10 +30,16 @@ require_relative 'farmar_shared_instance_methods'
 
 # [DONE] self.by_market(market_id): returns all of the vendors with the given market_id
 
+
+# self.most_revenue(n) returns the top n vendor instances ranked by total revenue
+# self.most_items(n) returns the top n vendor instances ranked by total number of items sold
+# self.revenue(date) returns the total revenue for that date across all vendors
+#revenue(date) returns the total revenue for that specific purchase date and vendor instance
+
 class FarMar::Vendor
 	attr_reader :id, :name, :num_of_employees, :market_id, :vendor_list
 	
-	extend SharedMethods
+	extend SharedClassMethods
 	include SharedInstanceMethods
 	
 	def initialize(details_hash)
@@ -45,7 +51,7 @@ class FarMar::Vendor
 	end
 
 #DONE
-	def self.all?  #returns a collection of instances, representing all of the objects described in the CSV  ##WORKS
+	def self.all  #returns a collection of instances, representing all of the objects described in the CSV  ##WORKS
 		multiple_instances = []
 
   		CSV.foreach('support/vendors.csv', 'r').each do |line|
@@ -61,7 +67,7 @@ class FarMar::Vendor
 #DONE
 	def market #returns the FarMar::Market instance that is associated with this vendor using the FarMar::Vendor market_id field ##WORKS
 		markets = []
-		list = FarMar::Market.all?
+		list = FarMar::Market.all
 		list.each do |market|
 			if market.id == @market_id
 				puts market.name
@@ -87,7 +93,7 @@ class FarMar::Vendor
 	 		my_revenue += sale.amount
 	 	end
 	 	total_sales_in_cents = my_revenue * 100
-	 	puts total_sales_in_cents.to_s + " cents.  can you believe it?"
+	 	# puts total_sales_in_cents.to_s + " cents.  can you believe it?"
 		return total_sales_in_cents
 	end
 
@@ -96,7 +102,7 @@ class FarMar::Vendor
 	def self.by_market(given_market_id) #returns all of the vendors with the given market_id
 		vendor_list = []
 
-		list = FarMar::Vendor.all?
+		list = FarMar::Vendor.all
 		# puts list.length
 		list.each do |vendor|
 			if vendor.market_id == given_market_id
@@ -107,6 +113,15 @@ class FarMar::Vendor
 
 		puts vendor_list.length.to_s + " is in that many market(s)."
 		return vendor_list
+	end
+
+	def self.most_revenue(n) #returns the top n vendor instances ranked by total revenue
+	end
+	def self.most_items(n) #returns the top n vendor instances ranked by total number of items sold
+	end
+	def self.revenue(date) #returns the total revenue for that date across all vendors
+	end
+	def revenue(date) #returns the total revenue for that specific purchase date and vendor instance
 	end
 
 end
