@@ -1,3 +1,7 @@
+require 'csv'
+require_relative 'farmar_shared_methods'
+require_relative 'farmar_shared_instance_methods'
+
 # FarMar::Sale
 
 # Each sale belongs to a vendor AND a product. The vendor_id and product_id fields refer to the FarMar::Vendor and FarMar::Product ID fields, respectively. The FarMar::Sale data, in order in the CSV, consists of:
@@ -26,10 +30,8 @@ require 'date'
 class FarMar::Sale
 	attr_reader :id, :amount, :purchase_time, :vendor_id, :product_id
 	
-
 	extend SharedMethods
-	
-
+	include SharedInstanceMethods
 
 	def initialize(details_hash)
 		@id = details_hash[:id]
@@ -52,40 +54,10 @@ class FarMar::Sale
 
 #the find(id) method is shared across all the classes - can be found in the SharedMethods module
 
-#DONE
-	def vendor #returns a collection of FarMar::Vendor instances that are associated with the sale by the vendor_id field.
-		vendor_instances = []
-		list = FarMar::Vendor.all?
-		list.each do |vendor_instance|
-			if vendor_instance.id == @vendor_id
-				puts vendor_instance.name
-				vendor_instances << vendor_instance
-			end
-		end
-		puts vendor_instances.length.to_s + " market(s).  should be 1!"
-		return vendor_instances
-	end
+#the vendors method is shared across a few classes - can be found in the SharedInstanceMethods module
 
-#DONE
-	def product #returns the FarMar::Product instance that is associated with this sale using the FarMar::Sale product_id field
-		product_instances = []
-		list = FarMar::Product.all?
-		list.each do |product_instance|
-			if product_instance.id == @product_id
-				puts product_instance.name
-				product_instances << product_instance
-			end
-		end
-		puts product_instances.length.to_s + " product(s)."
-		return product_instances
-	end
+#the products method is shared across a few classes - can be found in the SharedInstanceMethods module
 
-	# def format_time(beginning_time, end_time)
-	# 	# 2013-11-07 04:34:56 -0800
-	# 	format = "%y-%m-%d %H:%M:%S"
-	# 	beginning_time = DateTime.strptime(beginning_time, format)
-	# 	end_time = DateTime.strptime(end_time, format)
-	# end
 
 
 #DONE
