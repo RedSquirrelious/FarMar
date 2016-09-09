@@ -1,5 +1,6 @@
 require 'csv'
 require_relative 'farmar_shared_methods'
+require_relative 'farmar_shared_instance_methods'
 # FarMar::Market
 
 # Each individual market has many vendors associated with it. The FarMar::Market data, in order in the CSV, consists of:
@@ -22,10 +23,12 @@ require_relative 'farmar_shared_methods'
 #[DONE] vendors: returns a collection of FarMar::Vendor instances that are associated with the market by the market_id field.
 module FarMar
 
-
-
 	class Market
+
 	extend SharedMethods
+	
+	include SharedInstanceMethods
+
 		attr_reader :name, :id
 
 			def initialize(details_hash)
@@ -53,18 +56,7 @@ module FarMar
 #the find(id) method is shared across all the classes - can be found in the SharedMethods module
 
 
+#the vendors method is shared across a few classes - can be found in the SharedInstanceMethods module
 
-#DONE
-		def vendors #returns a collection of FarMar::Vendor instances that are associated with the market by the market_id field.
-		vendor_list = []
-		list = FarMar::Vendor.all?
-		list.each do |vendor|
-			if vendor.market_id == @id
-				puts vendor.name
-				vendor_list << vendor
-			end
-		end
-		return vendor_list
-	end
 	end
 end
