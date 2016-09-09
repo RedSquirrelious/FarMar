@@ -19,13 +19,14 @@ require_relative 'farmar_shared_instance_methods'
 
 #[DONE] sales: returns a collection of FarMar::Sale instances that are associated using the FarMar::Sale product_id field.
 
-#NOTDONENOTDONENOTDONE number_of_sales: returns the number of times this product has been sold.
+#[DONE] number_of_sales: returns the number of times this product has been sold.
 
 #[DONE] self.by_vendor(vendor_id): returns all of the products with the given vendor_id
 
+#NOTDONEYETNOTDONEYET self.most_revenue(n) returns the top n product instances ranked by total revenue
 
 class FarMar::Product
-	extend SharedMethods
+	extend SharedClassMethods
 	include SharedInstanceMethods
 
 	attr_reader :id, :name, :vendor_id
@@ -41,7 +42,7 @@ class FarMar::Product
 	end
 
 
-	def self.all?  #returns a collection of instances, representing all of the objects described in the CSV
+	def self.all  #returns a collection of instances, representing all of the objects described in the CSV
 		multiple_instances = []
 
   		CSV.foreach('support/products.csv', 'r').each do |line|
@@ -60,7 +61,6 @@ class FarMar::Product
 
 #DONE
 	def number_of_sales #returns the number of times this product has been sold.
-		puts "woo, number of sales"
 		sales
 		return sales.length
 
@@ -70,7 +70,7 @@ class FarMar::Product
 	def self.by_vendor(given_vendor_id) #returns all of the products with the given vendor_id
 		product_list = []
 
-		list = FarMar::Product.all?
+		list = FarMar::Product.all
 		# puts list.length
 		list.each do |item|
 			if item.vendor_id == given_vendor_id
@@ -81,6 +81,9 @@ class FarMar::Product
 
 		puts product_list.length.to_s + " is in that many market(s)."
 		return product_list
+	end
+
+	def self.most_revenue(n) #returns the top n product instances ranked by total revenue
 	end
 end
 
