@@ -81,7 +81,7 @@ class FarMar::Product
 		list = FarMar::Product.all?
 		# puts list.length
 		list.each do |item|
-			if item.vendor_id.to_i == given_vendor_id
+			if item.vendor_id == given_vendor_id
 				puts item.name
 				product_list << item
 			end
