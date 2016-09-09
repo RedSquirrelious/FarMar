@@ -30,7 +30,7 @@ require 'date'
 class FarMar::Sale
 	attr_reader :id, :amount, :purchase_time, :vendor_id, :product_id
 	
-	extend SharedMethods
+	extend SharedClassMethods
 	include SharedInstanceMethods
 
 	def initialize(details_hash)
